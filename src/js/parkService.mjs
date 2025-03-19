@@ -223,10 +223,20 @@ export async function getParkData() {
   return parkData.data[0];
 }
 
+export async function getParkAlerts(code) {
+  const parkData = await getJson("alerts?parkCode=$code");
+  return parkData.data;
+}
+
 export function getInfoLinks(data) {
   const withUpdateImages = parkInfoLinks.map((item, index) => {
     item.image = data[index + 1].url;
     return item;
   });
   return withUpdateImages;
+}
+
+export async function getVisitorCenterData(parkCode) {
+  const parkData = await getJson("visitorcenters?parkCode=${code}");
+  return parkData.data;
 }
